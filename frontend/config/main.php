@@ -10,10 +10,12 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+	'language' => 'ru',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+	        'enableCsrfValidation' => false,
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -40,8 +42,29 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            	'news' => 'test/index',
+            	'news/<id:\d+>' => 'test/view',
             ],
         ],
+		'stringHelper' => [
+		    'class' => 'frontend\components\StringHelper',
+		],
+		'mailer' => [
+		    'class' => 'yii\swiftmailer\Mailer',
+		    'useFileTransport' => false,
+		    'transport' => [
+			    'class' => 'Swift_SmtpTransport',
+			    'host' => 'smtp.gmail.com',
+			    'username' => 'rikzgt@gmail.com',
+			    'password' => 'rikz1993 ',
+			    'port' => '587',
+			    'encryption' => 'tls',
+		    ],
+		],
     ],
     'params' => $params,
+	'aliases' => [
+		'@files' => '/var/www/project/frontend/web/files',
+		'@photos' => '@files/photos',
+	]
 ];

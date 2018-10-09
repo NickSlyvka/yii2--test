@@ -30,6 +30,21 @@ return [
                 ],
             ],
         ],
+		'stringHelper' => [
+		    'class' => 'common\components\StringHelper',
+		],
+		'mailer' => [
+		    'class' => 'yii\swiftmailer\Mailer',
+		    'useFileTransport' => false,
+		    'transport' => [
+			    'class' => 'Swift_SmtpTransport',
+			    'host' => 'smtp.gmail.com',
+			    'username' => 'rikzgt@gmail.com',
+			    'password' => 'rikz1993 ',
+			    'port' => '587',
+			    'encryption' => 'tls',
+		    ],
+		],
     ],
     'params' => $params,
 ];

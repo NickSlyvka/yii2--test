@@ -73,10 +73,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-    	$newsList = Test::getNewsList();
-        return $this->render('index', [
-        	'newsList' => $newsList,
-        ]);
+    	//$newsList = Test::getNewsList();
+        return $this->render('index');
     }
 
     /**

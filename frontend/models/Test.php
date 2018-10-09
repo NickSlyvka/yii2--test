@@ -3,13 +3,32 @@
 namespace frontend\models;
 
 use Yii;
+use frontend\components\StringHelper;
 
 
 class Test
 {
-	public static function getNewsList()
+	public static function getNewsList($max)
 	{
-		$sql = 'SELECT * FROM news';
-		return Yii::$app->db->createCommand($sql)->queryAll();
+		$max = intval($max);
+		$sql = 'SELECT * FROM news LIMIT '. $max;
+		$result = Yii::$app->db->createCommand($sql)->queryAll();$helper = Yii::$app->stringHelper;
+
+		if (!empty($result) && is_array($result)) {
+			foreach ($result as &$item) {
+				$item['content'] = Yii::$app->stringHelper->getShort($item['content'], 5);
+			}
+
+		}
+		return $result;
 	}
+
+	public static function getItem($id)
+	{
+		$id = intval($id);
+		$sql = 'SELECT * FROM news WHERE id = '. $id;
+		return Yii::$app->db->createCommand($sql)->queryOne();
+	}
+
+
 }
