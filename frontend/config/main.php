@@ -18,7 +18,7 @@ return [
 	        'enableCsrfValidation' => false,
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'frontend\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -66,5 +66,6 @@ return [
 	'aliases' => [
 		'@files' => '/var/www/project/frontend/web/files',
 		'@photos' => '@files/photos',
+        '@images' => '@files/logo',
 	]
 ];

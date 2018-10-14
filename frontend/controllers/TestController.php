@@ -10,7 +10,7 @@ class TestController extends Controller
 {
 	public function actionIndex()
 	{
-		$max = Yii::$app->params['maxNewsInList'];
+		$max = Yii::$app->params['maxNewsList'];
 
 		$list = Test::getNewsList($max);
 

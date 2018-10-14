@@ -1,4 +1,8 @@
 <?php
+
+    use frontend\assets\GalleryAsset;
+    GalleryAsset::register($this);
+
 	if ($model->hasErrors()) {
 		echo '<pre>';
 		print_r($model->getErrors());

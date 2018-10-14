@@ -31,18 +31,18 @@ class EmployeeController extends Controller
 	{
 		$model = new Employee();
 		$model->scenario = Employee::SCENARIO_EMPLOYEE_REGISTER;
-		$formData = Yii::$app->request->post();
 
-		if (Yii::$app->request->isPost) {
-			$model->attributes = $formData;
+		if ($model->load(Yii::$app->request->post())) {
 
 			if ($model->validate()) {
-				echo Yii::$app->session->setFlash('success', 'Все четка!!');
+				Yii::$app->session->setFlash('success', 'Все четка!!');
 			}
-			else echo Yii::$app->session->setFlash('danger', 'Чет не робит епта!!');
+			else Yii::$app->session->setFlash('danger', 'Чет не робит епта!!');
 		}
 
-		return $this->render('register');
+		return $this->render('register', [
+		    'model' => $model,
+        ]);
 	}
 
 	public function actionUpdate()
